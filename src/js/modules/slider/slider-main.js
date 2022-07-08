@@ -1,8 +1,8 @@
 import Slider from './slider';
 
-export default class MainSlider extends Slider {
-    constructor(btns) {
-        super(btns);
+export default class MainSlider extends Slider { 
+    constructor(prevModulesBtns) {
+        super(prevModulesBtns);  debugger;
     }
     
     showSlides(n) {
@@ -25,7 +25,7 @@ export default class MainSlider extends Slider {
         } catch (e) {}
 
         if (n < 1) {
-            this.slideIndex = this.slide.length;
+            this.slideIndex = this.slides.length;
         }
 
         this.slides.forEach(slide => {
@@ -53,7 +53,7 @@ export default class MainSlider extends Slider {
             });
         });
 
-        document.querySelectorAll('.prevmodule').forEach(item => {
+        this.prevModulesBtns.forEach(item => { 
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
@@ -61,7 +61,7 @@ export default class MainSlider extends Slider {
             });
         });
 
-        document.querySelectorAll('.nextmodule').forEach(item => {
+        this.nextModulesBtns.forEach(item => { 
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();

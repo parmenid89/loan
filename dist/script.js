@@ -5029,6 +5029,8 @@ window.addEventListener('DOMContentLoaded', function () {
   });
   slider.render();
   var modulePageSlider = new _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    prevModulesBtns: '.prevmodule',
+    nextModulesBtns: '.nextmodule',
     container: '.moduleapp',
     btns: '.next'
   });
@@ -5494,16 +5496,20 @@ var MainSlider =
 function (_Slider) {
   _inherits(MainSlider, _Slider);
 
-  function MainSlider(btns) {
+  function MainSlider(prevModulesBtns) {
+    var _this;
+
     _classCallCheck(this, MainSlider);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MainSlider).call(this, btns));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MainSlider).call(this, prevModulesBtns));
+    debugger;
+    return _this;
   }
 
   _createClass(MainSlider, [{
     key: "showSlides",
     value: function showSlides(n) {
-      var _this = this;
+      var _this2 = this;
 
       if (n > this.slides.length) {
         this.slideIndex = 1;
@@ -5515,9 +5521,9 @@ function (_Slider) {
         if (n === 3) {
           this.hanson.classList.add('animated');
           setTimeout(function () {
-            _this.hanson.style.opacity = '1';
+            _this2.hanson.style.opacity = '1';
 
-            _this.hanson.classList.add('slideInUp');
+            _this2.hanson.classList.add('slideInUp');
           }, 3000);
         } else {
           this.hanson.classList.remove('slideInUp');
@@ -5525,7 +5531,7 @@ function (_Slider) {
       } catch (e) {}
 
       if (n < 1) {
-        this.slideIndex = this.slide.length;
+        this.slideIndex = this.slides.length;
       }
 
       this.slides.forEach(function (slide) {
@@ -5542,33 +5548,33 @@ function (_Slider) {
   }, {
     key: "bindTriggers",
     value: function bindTriggers() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.btns.forEach(function (item) {
         item.addEventListener('click', function () {
-          _this2.plusSlides(1);
+          _this3.plusSlides(1);
         });
         item.parentNode.previousElementSibling.addEventListener('click', function (e) {
           e.preventDefault();
-          _this2.slideIndex = 1;
+          _this3.slideIndex = 1;
 
-          _this2.showSlides(_this2.slideIndex);
+          _this3.showSlides(_this3.slideIndex);
         });
       });
-      document.querySelectorAll('.prevmodule').forEach(function (item) {
+      this.prevModulesBtns.forEach(function (item) {
         item.addEventListener('click', function (e) {
           e.stopPropagation();
           e.preventDefault();
 
-          _this2.plusSlides(-1);
+          _this3.plusSlides(-1);
         });
       });
-      document.querySelectorAll('.nextmodule').forEach(function (item) {
+      this.nextModulesBtns.forEach(function (item) {
         item.addEventListener('click', function (e) {
           e.stopPropagation();
           e.preventDefault();
 
-          _this2.plusSlides(1);
+          _this3.plusSlides(1);
         });
       });
     }
@@ -5783,7 +5789,11 @@ var Slider = function Slider() {
       _ref$animate = _ref.animate,
       animate = _ref$animate === void 0 ? false : _ref$animate,
       _ref$autoplay = _ref.autoplay,
-      autoplay = _ref$autoplay === void 0 ? false : _ref$autoplay;
+      autoplay = _ref$autoplay === void 0 ? false : _ref$autoplay,
+      _ref$prevModulesBtns = _ref.prevModulesBtns,
+      prevModulesBtns = _ref$prevModulesBtns === void 0 ? null : _ref$prevModulesBtns,
+      _ref$nextModulesBtns = _ref.nextModulesBtns,
+      nextModulesBtns = _ref$nextModulesBtns === void 0 ? null : _ref$nextModulesBtns;
 
   _classCallCheck(this, Slider);
 
@@ -5796,6 +5806,8 @@ var Slider = function Slider() {
   this.btns = document.querySelectorAll(btns);
   this.prev = document.querySelector(prev);
   this.next = document.querySelector(next);
+  this.prevModulesBtns = document.querySelectorAll(prevModulesBtns);
+  this.nextModulesBtns = document.querySelectorAll(nextModulesBtns);
   this.activeClass = activeClass;
   this.animate = animate;
   this.autoplay = autoplay;
