@@ -5028,6 +5028,11 @@ window.addEventListener('DOMContentLoaded', function () {
     container: '.page'
   });
   slider.render();
+  var modulePageSlider = new _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    container: '.moduleapp',
+    btns: '.next'
+  });
+  modulePageSlider.render();
   var showUpSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_1__["default"]({
     container: '.showup__content-slider',
     prev: '.showup__prev',
@@ -5086,12 +5091,14 @@ function () {
   function Difference(oldOfficer, newOfficer, items) {
     _classCallCheck(this, Difference);
 
-    this.oldOfficer = document.querySelector(oldOfficer);
-    this.newOfficer = document.querySelector(newOfficer);
-    this.oldItems = this.oldOfficer.querySelectorAll(items);
-    this.newItems = this.newOfficer.querySelectorAll(items);
-    this.oldCounter = 0;
-    this.newCounter = 0;
+    try {
+      this.oldOfficer = document.querySelector(oldOfficer);
+      this.newOfficer = document.querySelector(newOfficer);
+      this.oldItems = this.oldOfficer.querySelectorAll(items);
+      this.newItems = this.newOfficer.querySelectorAll(items);
+      this.oldCounter = 0;
+      this.newCounter = 0;
+    } catch (e) {}
   }
 
   _createClass(Difference, [{
@@ -5126,12 +5133,14 @@ function () {
   }, {
     key: "init",
     value: function init() {
-      this.addAnimation(this.oldItems);
-      this.addAnimation(this.newItems);
-      this.hideItems(this.oldItems);
-      this.hideItems(this.newItems);
-      this.bindTriggers(this.oldOfficer, this.oldItems, this.oldCounter);
-      this.bindTriggers(this.newOfficer, this.newItems, this.newCounter);
+      try {
+        this.addAnimation(this.oldItems);
+        this.addAnimation(this.newItems);
+        this.hideItems(this.oldItems);
+        this.hideItems(this.newItems);
+        this.bindTriggers(this.oldOfficer, this.oldItems, this.oldCounter);
+        this.bindTriggers(this.newOfficer, this.newItems, this.newCounter);
+      } catch (e) {}
     }
   }]);
 
@@ -5531,13 +5540,9 @@ function (_Slider) {
       this.showSlides(this.slideIndex += n);
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "bindTriggers",
+    value: function bindTriggers() {
       var _this2 = this;
-
-      try {
-        this.hanson = document.querySelector('.hanson');
-      } catch (e) {}
 
       this.btns.forEach(function (item) {
         item.addEventListener('click', function () {
@@ -5550,7 +5555,34 @@ function (_Slider) {
           _this2.showSlides(_this2.slideIndex);
         });
       });
-      this.showSlides(this.slideIndex);
+      document.querySelectorAll('.prevmodule').forEach(function (item) {
+        item.addEventListener('click', function (e) {
+          e.stopPropagation();
+          e.preventDefault();
+
+          _this2.plusSlides(-1);
+        });
+      });
+      document.querySelectorAll('.nextmodule').forEach(function (item) {
+        item.addEventListener('click', function (e) {
+          e.stopPropagation();
+          e.preventDefault();
+
+          _this2.plusSlides(1);
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.container) {
+        try {
+          this.hanson = document.querySelector('.hanson');
+        } catch (e) {}
+
+        this.showSlides(this.slideIndex);
+        this.bindTriggers();
+      }
     }
   }]);
 
@@ -5756,7 +5788,11 @@ var Slider = function Slider() {
   _classCallCheck(this, Slider);
 
   this.container = document.querySelector(container);
-  this.slides = this.container.children;
+
+  try {
+    this.slides = this.container.children;
+  } catch (e) {}
+
   this.btns = document.querySelectorAll(btns);
   this.prev = document.querySelector(prev);
   this.next = document.querySelector(next);
