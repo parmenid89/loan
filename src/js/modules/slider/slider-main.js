@@ -1,8 +1,8 @@
 import Slider from './slider';
 
 export default class MainSlider extends Slider { 
-    constructor(prevModulesBtns) {
-        super(prevModulesBtns);  debugger;
+    constructor(btns) {
+        super(btns);  debugger;
     }
     
     showSlides(n) {

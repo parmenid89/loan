@@ -5496,12 +5496,12 @@ var MainSlider =
 function (_Slider) {
   _inherits(MainSlider, _Slider);
 
-  function MainSlider(prevModulesBtns) {
+  function MainSlider(btns) {
     var _this;
 
     _classCallCheck(this, MainSlider);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(MainSlider).call(this, prevModulesBtns));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MainSlider).call(this, btns));
     debugger;
     return _this;
   }
