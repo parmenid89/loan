@@ -1,8 +1,8 @@
 import Slider from './slider';
 
 export default class MainSlider extends Slider { 
-    constructor(btns) {
-        super(btns);  debugger;
+    constructor(btn) {
+        super(btn);
     }
     
     showSlides(n) {
@@ -61,13 +61,13 @@ export default class MainSlider extends Slider {
             });
         });
 
-        this.nextModulesBtns.forEach(item => { 
-            item.addEventListener('click', (e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                this.plusSlides(1);
-            });
-        });
+        // this.nextModulesBtns.forEach(item => { 
+        //     item.addEventListener('click', (e) => {
+        //         e.stopPropagation();
+        //         e.preventDefault();
+        //         this.plusSlides(1);
+        //     });
+        // });
     }
 
     render() {
